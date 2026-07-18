@@ -355,6 +355,10 @@ def register_admin_handlers(bot: AsyncTeleBot) -> None:
                 if action == "read":
                     await message_repo.mark_read(target_message_id)
                     await bot.answer_callback_query(call.id, "O'qilgan deb belgilandi ✅")
+                    try:
+                        await bot.delete_message(chat_id, message_id)
+                    except ApiTelegramException as exc:
+                        logger.debug("Xabarni o'chirib bo'lmadi: %s", exc)
                 elif action == "reply":
                     await bot.answer_callback_query(call.id)
                     state_manager.set_state(admin_id, AdminState.BROADCAST_WAIT_TEXT)

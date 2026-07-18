@@ -48,23 +48,20 @@ def register_user_handlers(bot: AsyncTeleBot) -> None:
         if user is None:
             await bot.send_message(
                 message.chat.id,
-                "🚫 Kechirasiz, siz botdan foydalanish huquqiga ega emassiz.\n"
-                "Administrator sizni ro'yxatga olgandan so'ng foydalanishingiz mumkin bo'ladi.",
+                "?🚫",
             )
             return
 
         await user_service.touch_activity(user)
         await bot.send_message(
             message.chat.id,
-            f"👋 Assalomu alaykum, {user['full_name'] or 'foydalanuvchi'}!\n\n"
-            "Belgilangan vaqtda sizga eslatma yuboriladi. Eslatma kelganda "
-            "hisobotingizni (matn, rasm, video, audio, hujjat va h.k.) shu chatga yuboring.",
+            f"👋 Assalomu alaykum",
         )
 
     @bot.callback_query_handler(func=lambda c: c.data == "user:report_start")
     async def report_start_callback(call: CallbackQuery) -> None:
         await bot.answer_callback_query(call.id)
-        await bot.send_message(call.message.chat.id, "✍️ Hisobotingizni yuboring:")
+        await bot.send_message(call.message.chat.id, "✍️ hammasi joyidami:")
 
     @bot.message_handler(content_types=ALL_CONTENT_TYPES)
     async def content_dispatcher(message: Message) -> None:
@@ -89,4 +86,4 @@ def register_user_handlers(bot: AsyncTeleBot) -> None:
         await user_service.touch_activity(user)
         last_reminder_id = last_reminder_message.pop(telegram_id, None)
         await report_service.handle_incoming_report(bot, message, user, last_reminder_id)
-        await bot.send_message(message.chat.id, "✅ Hisobotingiz qabul qilindi. Rahmat!")
+
