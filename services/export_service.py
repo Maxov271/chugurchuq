@@ -70,7 +70,7 @@ class ExportService:
         for r in rows:
             lines.append(
                 f"{r['internal_id']} | {r['report_date']} {r['report_time']} | "
-                f"{r['report_type']} | {r['media_type']} | status={r['status']}"
+                f"{r['report_type']} | {r['media_type']} | status={r['status']} | content={r['content']} | is_read={r['is_read']}"
             )
         path.write_text("\n".join(lines), encoding="utf-8")
         await export_repo.log(admin_id, "txt", filter_type, str(path))
