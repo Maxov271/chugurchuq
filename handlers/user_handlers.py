@@ -48,7 +48,7 @@ def register_user_handlers(bot: AsyncTeleBot) -> None:
         if user is None:
             await bot.send_message(
                 message.chat.id,
-                "?🚫",
+                f"{message.chat.id}",
             )
             return
 
