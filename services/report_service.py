@@ -123,7 +123,7 @@ class ReportService:
     ) -> None:
         header = (
             f"🆕 <b>Yangi hisobot</b>\n"
-            f"👤 ID: <code>{user_row['internal_id']}</code>\n"
+            f"👤 ID: <code>{user_row['full_name']}</code>\n"
             f"📎 Turi: {media_type}\n"
         )
         kb = report_item_keyboard(message_id)
