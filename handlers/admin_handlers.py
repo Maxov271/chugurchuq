@@ -63,7 +63,7 @@ async def send_main_menu(bot: AsyncTeleBot, chat_id: int) -> None:
 
 def _format_report_line(row) -> str:
     read_mark = "✅" if row["is_read"] else "🔕"
-    return f"{read_mark} <code>{row['internal_id']}</code> — {row['report_date']} {row['report_time']} — {row['media_type']}"
+    return f"{read_mark} <code>{row['internal_id']}</code> — {row['report_date']} {row['report_time']} — {row['media_type']} content={row['content']}"
 
 
 async def _render_report_list(bot: AsyncTeleBot, chat_id: int, message_id: int | None, rows, title: str) -> None:
